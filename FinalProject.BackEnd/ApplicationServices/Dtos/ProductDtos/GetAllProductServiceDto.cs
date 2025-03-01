@@ -8,6 +8,6 @@ namespace FinalProject.BackEnd.ApplicationServices.Dtos.ProductDtos
 {
     public class GetAllProductServiceDto
     {
-        public List<GetProductServiceDto> GetPersonServiceDtos { get; set; }
+        public List<GetProductServiceDto> GetProductServiceDtos { get; set; }
     }
 }
