@@ -20,8 +20,6 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
         } 
         #endregion
 
-
-
         #region [- SelectAll() -]
         public async Task<IResponse<IEnumerable<Product>>> SelectAll()
         {
@@ -45,9 +43,9 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
             try
             {
                 var responseValue = new Product();
-                    //responseValue = await _projectDbContext.Person.FindAsync(person.Email);
-                    //responseValue = await _projectDbContext.Person.Where(c => c.Email == person.Email).SingleOrDefaultAsync();
                 
+                   
+             
                 
                 
                     responseValue = await _projectDbContext.Product.FindAsync(product.Id);
@@ -56,9 +54,9 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
                      new Response<Product>(false, HttpStatusCode.UnprocessableContent, ResponseMessages.NullInput, null) :
                      new Response<Product>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, responseValue);
             }
-            catch (Exception)
+            catch (Exception ex ) 
             {
-                throw;
+                return new Response<Product>(false, HttpStatusCode.InternalServerError, ex.Message, null);
             }
         }
         #endregion

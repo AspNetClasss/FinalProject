@@ -12,4 +12,5 @@ namespace FinalProject.BackEnd.ApplicationServices.Contracts
         Task<IResponse<TUpdate>> Put(TUpdate dto);
         Task<IResponse<TDelete>> Delete(TDelete dto);
     }
+
 }

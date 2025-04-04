@@ -6,6 +6,7 @@ using FinalProject.BackEnd.Frameworks.ResponseFrameworks;
 using FinalProject.BackEnd.Frameworks.ResponseFrameworks.Contracts;
 using FinalProject.BackEnd.Models.DomainModels.PersonAggregates;
 using FinalProject.BackEnd.Models.Services.Contracts;
+using FinalProject.BackEnd.Models.Services.Repositories;
 using System.Net;
 
 namespace FinalProject.BackEnd.ApplicationServices.Services
@@ -45,8 +46,7 @@ namespace FinalProject.BackEnd.ApplicationServices.Services
                     Id = item.Id,
                     FirstName = item.FirstName,
                     LastName = item.LastName,
-                    Email = item.Email,
-                    Role= item.Role
+                    Email = item.Email
                 };
                 getAllPersonDto.GetPersonServiceDtos.Add(personDto);
             }
@@ -64,8 +64,7 @@ namespace FinalProject.BackEnd.ApplicationServices.Services
                 Id = dto.Id,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
-                Email = dto.Email,
-                Role = dto.Role
+                Email = dto.Email
             };
             var selectResponse = await _personRepository.Select(person);
 
@@ -83,8 +82,7 @@ namespace FinalProject.BackEnd.ApplicationServices.Services
                 Id = selectResponse.Value.Id,
                 FirstName = selectResponse.Value.FirstName,
                 LastName = selectResponse.Value.LastName,
-                Email = selectResponse.Value.Email,
-                Role= selectResponse.Value.Role
+                Email = selectResponse.Value.Email
             };
             var response = new Response<GetPersonServiceDto>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, getPersonServiceDto);
             return response;
@@ -100,11 +98,10 @@ namespace FinalProject.BackEnd.ApplicationServices.Services
             }
             var postPerson = new Person()
             {
-                Id = new Guid(),
+                Id =  Guid.NewGuid(),
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
-                Email = dto.Email,
-                Role= dto.Role
+                Email = dto.Email
             };
             var insertResponse = await _personRepository.Insert(postPerson);
 
@@ -130,8 +127,7 @@ namespace FinalProject.BackEnd.ApplicationServices.Services
                 Id = dto.Id,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
-                Email = dto.Email,
-                Role= dto.Role
+                Email = dto.Email
             };
             var updateResponse = await _personRepository.Update(putPerson);
 
@@ -166,3 +162,5 @@ namespace FinalProject.BackEnd.ApplicationServices.Services
         #endregion
     }
 }
+
+

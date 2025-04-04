@@ -29,10 +29,12 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
                     new Response<IEnumerable<Person>>(false, HttpStatusCode.UnprocessableContent, ResponseMessages.NullInput, null) :
                     new Response<IEnumerable<Person>>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, persons);
             }
-            catch (Exception)
+            catch (Exception )
             {
                 throw;
+ 
             }
+
         }
         #endregion
 
@@ -55,10 +57,12 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
                      new Response<Person>(false, HttpStatusCode.UnprocessableContent, ResponseMessages.NullInput, null) :
                      new Response<Person>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, responseValue);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+              
+                return new Response<Person>(false, HttpStatusCode.InternalServerError, ex.Message, null);
             }
+
         }
         #endregion
 
@@ -76,10 +80,12 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
                 var response = new Response<Person>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, model);
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+               
+                return new Response<Person>(false, HttpStatusCode.InternalServerError, ex.Message, null);
             }
+
         }
         #endregion
 
@@ -98,10 +104,12 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
                 var response = new Response<Person>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, model);
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                
+                return new Response<Person>(false, HttpStatusCode.InternalServerError, ex.Message, null);
             }
+
         }
         #endregion
 
@@ -120,11 +128,15 @@ namespace FinalProject.BackEnd.Models.Services.Repositories
                 var response = new Response<Person>(true, HttpStatusCode.OK, ResponseMessages.SuccessfullOperation, model);
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+               
+                return new Response<Person>(false, HttpStatusCode.InternalServerError, ex.Message, null);
             }
+
         }
         #endregion
+
     }
 }
+
